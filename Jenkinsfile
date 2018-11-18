@@ -14,9 +14,9 @@ node('linux') {
 		{
 		sh 'aws s3 mb s3://assignment9-bucket'
 		}
-		dirname = "${WORKSPACE}"
-		filename = "${WORKSPACE}/dist/*.jar"
-		echo "${dirname}"
+		filename = "${WORKSPACE}//dist//*.jar"
+		
+		//echo "${dirname}"
 		echo "${filename}"
 		//sh 'aws s3 cp ${filename} s3://assignment9-bucket/${filename}'
 	}
