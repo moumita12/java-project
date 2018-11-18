@@ -10,7 +10,10 @@ node('linux') {
 		sh 'ant -f build.xml -v'
 	} 
 	stage('Deploy') {    
-		sh 'aws s3 mb s3://assignment9-bucket' 
+		withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'jenkins-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+		{
+		sh 'aws s3 mb s3://assignment9-bucket'
+		}
 		sh 'aws s3 cp “/workspace/java-pipeline/dist/rect*.jar” s3://assignment9-bucket/'
 	}
 	stage('Report') {    
