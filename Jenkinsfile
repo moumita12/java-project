@@ -14,7 +14,7 @@ node('linux') {
 		{
 		sh 'aws s3 mb s3://assignment9-bucket'
 		}
-		sh 'aws s3 cp “target/rect*.jar” s3://assignment9-bucket/'
+		echo "${BUILD_NUMBER}"
 	}
 	stage('Report') {    
 		withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'jenkins-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
