@@ -18,7 +18,7 @@ node('linux') {
 		
 		//echo "${dirname}"
 		//echo "${filename}"
-		sh 'aws s3 cp ${WORKSPACE}/dist/*.jar s3://assignment9-bucket/ --recursive --exclude "*" --include "*.jar"'
+		sh 'aws s3 cp ${WORKSPACE}/dist/*.jar s3://assignment9-bucket/ --recursive --include "*.jar"'
 	}
 	stage('Report') {    
 		withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'jenkins-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
