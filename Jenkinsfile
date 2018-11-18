@@ -17,7 +17,7 @@ node('linux') {
 		filename = sh returnStdout: true, script: "${WORKSPACE}/dist/*.jar"
 		
 		//echo "${dirname}"
-		echo "${filename}"
+		//echo "${filename}"
 		//sh 'aws s3 cp ${filename} s3://assignment9-bucket/${filename}'
 	}
 	stage('Report') {    
