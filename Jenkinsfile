@@ -14,7 +14,7 @@ node('linux') {
 		{
 		sh 'aws s3 mb s3://assignment9-bucket'
 		}
-		sh 'aws cp ${WORKSPACE}/dist/*.jar s3://assignment9-bucket'
+		sh 'aws cp ${WORKSPACE}/dist/*.jar s3://assignment9-bucket/${WORKSPACE}/dist/*.jar'
 	}
 	stage('Report') {    
 		withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'jenkins-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
