@@ -14,11 +14,8 @@ node('linux') {
 		{
 		sh 'aws s3 mb s3://assignment9-bucket'
 		}
-		//filename = sh returnStdout: true, script: "${WORKSPACE}/dist/*.jar"
 		
-		//echo "${dirname}"
-		//echo "${filename}"
-		sh 'aws s3 cp ${WORKSPACE}/dist/*.jar s3://assignment9-bucket/rectangle-${BUILD_NUMBER}.jar'
+		sh 'aws s3 cp ${WORKSPACE}/dist/*.jar s3://assignment9-bucket/rectangle-${BUILD_NUMBER}.jar --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers'
 	}
 	stage('Report') {    
 		withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'jenkins-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
